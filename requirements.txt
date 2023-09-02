@@ -3,4 +3,5 @@ numpy
 seaborn
 matplotlib
 warnings
+scikit-learn
 -e .
