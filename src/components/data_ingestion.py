@@ -1,23 +1,24 @@
 import os
 import sys
-from src.logger import logging
-from src.exception import CustomException
+
+sys.path.append('/home/saahilt/ml_project/src')
+from exception import CustomException
+from logger import logging
 import pandas as pd
+from src.components.data_transform import DataTransformation
+from src.components.data_transform import DataTransformationConfig
 from sklearn.model_selection import train_test_split
-
-
 from dataclasses import dataclass
-
 
 #Some inputs required written in this
 @dataclass
 class DataIngestionConfig:
-    train_data_path: str=os.path.join("artifacts", "train.csv")
-    test_data_path: str=os.path.join("artifacts", "test.csv")
-    raw_data_path: str=os.path.join("artifacts", "data.csv")
+    train_data_path: str=os.path.join('artifacts', "train.csv")
+    test_data_path: str=os.path.join('artifacts', "test.csv")
+    raw_data_path: str=os.path.join('artifacts', "data.csv")
 
 class DataIngestion:
-    def __init__(self) -> None:
+    def __init__(self):
         self.ingestion_config = DataIngestionConfig()
     
     def ingestion(self):
@@ -42,9 +43,11 @@ class DataIngestion:
             )
 
         except Exception as e:
-            raise(CustomException, sys)
+            raise CustomException(e, sys)
         
 
-        if __name__ == "__main__":
-            obj = DataIngestion()
-            obj.ingestion()
+if __name__ == "__main__":
+    obj = DataIngestion()
+    obj.ingestion()
+
+    train_data, test_data = 
